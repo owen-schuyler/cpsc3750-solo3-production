@@ -2,8 +2,8 @@ import os
 import math
 from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
 
-import psycopg2
-import psycopg2.extras
+import psycopg
+from psycopg.rows import dict_row
 from flask import (
     Flask, render_template, request, redirect, url_for,
     flash, make_response, jsonify
@@ -43,7 +43,7 @@ def get_database_url() -> str:
 
 
 def db_conn():
-    return psycopg2.connect(get_database_url())
+    return psycopg.connect(get_database_url(), row_factory=dict_row)
 
 
 def init_db():
@@ -236,15 +236,16 @@ def books_list():
     sort_key, direction = normalize_sort(request.args.get("sort"), request.args.get("dir"))
 
     where = []
-    params = {}
+    params = []
 
     if q:
-        where.append("(title ILIKE %(q)s OR author ILIKE %(q)s)")
-        params["q"] = f"%{q}%"
+        where.append("(title ILIKE %s OR author ILIKE %s)")
+        like = f"%{q}%"
+        params.extend([like, like])
 
     if status:
-        where.append("status = %(status)s")
-        params["status"] = status
+        where.append("status = %s")
+        params.append(status)
 
     where_sql = ("WHERE " + " AND ".join(where)) if where else ""
     order_sql = f"ORDER BY {ALLOWED_SORTS[sort_key]} {direction.upper()}, id DESC"
@@ -252,7 +253,7 @@ def books_list():
     offset = (page - 1) * page_size
 
     with db_conn() as conn:
-        with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+        with conn.cursor() as cur:
             cur.execute(f"SELECT COUNT(*) AS cnt FROM books {where_sql};", params)
             total = cur.fetchone()["cnt"]
 
@@ -267,9 +268,9 @@ def books_list():
                 FROM books
                 {where_sql}
                 {order_sql}
-                LIMIT %(limit)s OFFSET %(offset)s;
+                LIMIT %s OFFSET %s;
                 """,
-                {**params, "limit": page_size, "offset": offset},
+                params + [page_size, offset],
             )
             rows = cur.fetchall()
 
@@ -290,6 +291,7 @@ def books_list():
 
     if set_cookie:
         resp.set_cookie("page_size", str(page_size), max_age=60 * 60 * 24 * 30, samesite="Lax")
+
     return resp
 
 
@@ -323,7 +325,7 @@ def books_new_submit():
 @app.get("/books/<int:book_id>/edit")
 def books_edit_form(book_id: int):
     with db_conn() as conn:
-        with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+        with conn.cursor() as cur:
             cur.execute("SELECT * FROM books WHERE id = %s;", (book_id,))
             book = cur.fetchone()
     if not book:
