@@ -9,21 +9,22 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">
-      <div class="logo">📚</div>
-      <div>
-        <h1>Book Collection Manager</h1>
-        <p class="sub">SQL + custom domain + HTTPS (Solo Project 3)</p>
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-mark"></div>
+        <div class="brand-text">
+          <h1>Book Collection Manager</h1>
+          <p class="sub">SQL + custom domain + HTTPS</p>
+        </div>
       </div>
+  
+      <nav class="nav">
+        <a class="navlink" href="{{ url_for('books_list') }}">Books</a>
+        <a class="navlink" href="{{ url_for('books_new_form') }}">Add Book</a>
+        <a class="navlink" href="{{ url_for('stats_view') }}">Stats</a>
+      </nav>
     </div>
-
-    <nav class="nav">
-      <a class="navlink" href="{{ url_for('books_list') }}">Books</a>
-      <a class="navlink" href="{{ url_for('books_new_form') }}">Add Book</a>
-      <a class="navlink" href="{{ url_for('stats_view') }}">Stats</a>
-    </nav>
   </header>
-
   <main class="container">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
