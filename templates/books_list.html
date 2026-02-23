@@ -7,7 +7,7 @@
     <div class="meta">Total: <strong>{{ total }}</strong> • Page size: <strong>{{ page_size }}</strong></div>
   </div>
 
-  <form class="controls" method="get" action="{{ url_for('books_list') }}">
+  <form id="filtersForm" class="controls" method="get" action="{{ url_for('books_list') }}" data-live="true">
     <div class="row">
       <input class="input" type="text" name="q" placeholder="Search title or author…" value="{{ q }}" />
 
