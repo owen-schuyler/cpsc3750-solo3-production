@@ -24,6 +24,7 @@ ALLOWED_SORTS = {
 }
 ALLOWED_DIRS = ["asc", "desc"]
 
+
 # -----------------------------
 # DB helpers
 # -----------------------------
@@ -43,6 +44,7 @@ def get_database_url() -> str:
 
 
 def db_conn():
+    # dict_row makes fetchone()/fetchall() return dict-like rows
     return psycopg.connect(get_database_url(), row_factory=dict_row)
 
 
@@ -65,11 +67,12 @@ def init_db():
                 );
             """)
 
-            cur.execute("SELECT COUNT(*) FROM books;")
-            count = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) AS cnt FROM books;")
+            count = cur.fetchone()["cnt"]
 
             if count == 0:
                 seed_books(cur)
+
         conn.commit()
 
 
@@ -185,9 +188,9 @@ def validate_book_form(form):
         except Exception:
             errors["rating"] = "Rating must be a whole number."
 
-    # Image URL required by rubric, but we’ll gracefully default to placeholder if blank
+    # image_url optional; UI shows placeholder if blank/broken
     if image_url == "":
-        image_url = ""  # stored blank; UI will show placeholder
+        image_url = ""
 
     cleaned = {
         "title": title,
@@ -211,7 +214,8 @@ def health():
     try:
         with db_conn() as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT 1;")
+                cur.execute("SELECT 1 AS ok;")
+                _ = cur.fetchone()["ok"]
                 db_ok = True
     except Exception:
         ok = False
@@ -304,7 +308,13 @@ def books_new_form():
 def books_new_submit():
     cleaned, errors = validate_book_form(request.form)
     if errors:
-        return render_template("book_form.html", mode="new", book=cleaned, errors=errors, allowed_status=ALLOWED_STATUS), 400
+        return render_template(
+            "book_form.html",
+            mode="new",
+            book=cleaned,
+            errors=errors,
+            allowed_status=ALLOWED_STATUS
+        ), 400
 
     with db_conn() as conn:
         with conn.cursor() as cur:
@@ -326,11 +336,16 @@ def books_new_submit():
 def books_edit_form(book_id: int):
     with db_conn() as conn:
         with conn.cursor() as cur:
-            cur.execute("SELECT * FROM books WHERE id = %s;", (book_id,))
+            cur.execute(
+                "SELECT id, title, author, year, genre, status, rating, image_url FROM books WHERE id = %s;",
+                (book_id,)
+            )
             book = cur.fetchone()
+
     if not book:
         flash("Book not found.", "error")
         return redirect(url_for("books_list"))
+
     return render_template("book_form.html", mode="edit", book=book, errors={}, allowed_status=ALLOWED_STATUS)
 
 
@@ -338,9 +353,14 @@ def books_edit_form(book_id: int):
 def books_edit_submit(book_id: int):
     cleaned, errors = validate_book_form(request.form)
     if errors:
-        # keep id for template
         cleaned["id"] = book_id
-        return render_template("book_form.html", mode="edit", book=cleaned, errors=errors, allowed_status=ALLOWED_STATUS), 400
+        return render_template(
+            "book_form.html",
+            mode="edit",
+            book=cleaned,
+            errors=errors,
+            allowed_status=ALLOWED_STATUS
+        ), 400
 
     with db_conn() as conn:
         with conn.cursor() as cur:
@@ -365,6 +385,7 @@ def books_delete(book_id: int):
         with conn.cursor() as cur:
             cur.execute("DELETE FROM books WHERE id=%s;", (book_id,))
         conn.commit()
+
     flash("Book deleted.", "success")
     return redirect(url_for("books_list"))
 
@@ -372,16 +393,17 @@ def books_delete(book_id: int):
 @app.get("/stats")
 def stats_view():
     page_size, _ = get_page_size()
+
     with db_conn() as conn:
         with conn.cursor() as cur:
-            cur.execute("SELECT COUNT(*) FROM books;")
-            total = cur.fetchone()[0]
+            cur.execute("SELECT COUNT(*) AS total FROM books;")
+            total = cur.fetchone()["total"]
 
-            cur.execute("SELECT ROUND(AVG(rating)::numeric, 2) FROM books WHERE rating IS NOT NULL;")
-            avg_rating = cur.fetchone()[0]
+            cur.execute("SELECT ROUND(AVG(rating)::numeric, 2) AS avg_rating FROM books WHERE rating IS NOT NULL;")
+            avg_rating = cur.fetchone()["avg_rating"]
 
             cur.execute("""
-                SELECT status, COUNT(*) 
+                SELECT status, COUNT(*) AS cnt
                 FROM books
                 GROUP BY status
                 ORDER BY status;
@@ -398,5 +420,4 @@ def stats_view():
 
 
 if __name__ == "__main__":
-    # Local run only
     app.run(host="127.0.0.1", port=5050, debug=True)
