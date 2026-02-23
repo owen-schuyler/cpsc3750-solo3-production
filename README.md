@@ -1,10 +1,23 @@
+CPSC 3750 — Solo Project 3
+
+Production Collection Manager
+
+Live Application
+
+Custom Domain:
+https://owenschuyler.com
+
+HTTPS is enabled (secure connection via Render).
+
+⸻
+
 Domain
 	•	Domain Name: owenschuyler.com
 	•	Registrar: Namecheap
 	•	DNS Configuration:
 	•	A record (@) → 216.24.57.1 (Render IP)
 	•	CNAME (www) → cpsc3750-solo3-production.onrender.com
-	•	HTTPS is enabled automatically via Render (Let’s Encrypt).
+	•	SSL certificate automatically provisioned by Render (Let’s Encrypt).
 
 ⸻
 
@@ -12,11 +25,9 @@ Hosting Provider
 	•	Platform: Render
 	•	Service Type: Web Service
 	•	Region: Virginia (US East)
-	•	Free tier instance
+	•	Plan: Free tier
 
-The application is publicly accessible at:
-
-https://owenschuyler.com
+The application is publicly accessible with no authentication required.
 
 ⸻
 
@@ -25,43 +36,52 @@ Tech Stack
 	•	WSGI Server: Gunicorn
 	•	Database: PostgreSQL
 	•	Database Hosting: Render Managed Postgres
-	•	Frontend: Server-rendered HTML (Jinja templates)
+	•	Frontend: Server-rendered HTML using Jinja templates
 	•	Styling: Custom CSS (no frameworks)
 
 ⸻
 
 Database Configuration
-	•	PostgreSQL database created via Render
-	•	Connected using DATABASE_URL environment variable
-	•	SSL mode enforced via connection parsing
-	•	Schema auto-created at startup
-	•	Application seeds 30+ records if database is empty
+	•	PostgreSQL database provisioned through Render
+	•	Connected via the DATABASE_URL environment variable
+	•	SSL mode enforced in connection logic
+	•	Schema auto-created at application startup
+	•	Application seeds 30+ records if the database is empty
 
-No credentials are stored in the repository.
+All CRUD operations persist directly to PostgreSQL.
+
+No credentials are stored in this repository.
 
 ⸻
 
 Environment Variables
 
-Secrets are managed via Render environment variables:
-	•	DATABASE_URL → Internal Postgres connection string
-	•	SECRET_KEY → Randomly generated secret key for Flask sessions
+Managed securely through Render:
+	•	DATABASE_URL — Internal Postgres connection string
+	•	SECRET_KEY — Flask session secret
+
+No secrets are committed to Git.
+
+⸻
 
 Build & Start Commands (Render)
-
 Build Command: pip install -r requirements.txt
 Start Command: gunicorn app:app
-
 Deployment Workflow
 	1.	Code is pushed to GitHub.
-	2.	Render automatically detects new commits.
-	3.	Render installs dependencies and redeploys.
-	4.	Service becomes available at the custom domain.
+	2.	Render detects the new commit.
+	3.	Render installs dependencies.
+	4.	Render redeploys automatically.
+	5.	Application becomes available at the custom domain.
+
+Manual deploys can also be triggered from the Render dashboard.
+
+⸻
 
 Updating the Application
 
-To deploy updates: git add .
+To deploy changes:
+git add .
 git commit -m "Update feature"
 git push
-
-Render automatically rebuilds and redeploys the application or you can manually deploy the new application from render. 
+Render rebuilds and redeploys automatically (or manually via dashboard).
