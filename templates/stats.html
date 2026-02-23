@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="panel">
+  <div class="panelhead">
+    <h2>Stats</h2>
+    <div class="meta">Derived values computed from the full SQL dataset.</div>
+  </div>
+
+  <div class="statsgrid">
+    <div class="statcard">
+      <div class="muted">Total records</div>
+      <div class="big">{{ total }}</div>
+    </div>
+
+    <div class="statcard">
+      <div class="muted">Current page size</div>
+      <div class="big">{{ page_size }}</div>
+      <div class="hint">Stored in a cookie and restored on reload.</div>
+    </div>
+
+    <div class="statcard">
+      <div class="muted">Average rating</div>
+      <div class="big">{{ avg_rating }}</div>
+      <div class="hint">Only includes books with a rating.</div>
+    </div>
+  </div>
+
+  <div class="panelhead" style="margin-top:16px;">
+    <h3>Count by status</h3>
+  </div>
+
+  <div class="statuslist">
+    {% for s, cnt in by_status %}
+      <div class="rowline">
+        <span class="pill">{{ s }}</span>
+        <span class="muted">{{ cnt }}</span>
+      </div>
+    {% endfor %}
+  </div>
+
+</section>
+
+{% endblock %}

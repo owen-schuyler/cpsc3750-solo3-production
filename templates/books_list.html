@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="panel">
+  <div class="panelhead">
+    <h2>All Books</h2>
+    <div class="meta">Total: <strong>{{ total }}</strong> • Page size: <strong>{{ page_size }}</strong></div>
+  </div>
+
+  <form class="controls" method="get" action="{{ url_for('books_list') }}">
+    <div class="row">
+      <input class="input" type="text" name="q" placeholder="Search title or author…" value="{{ q }}" />
+
+      <select class="select" name="status">
+        <option value="">All Statuses</option>
+        {% for s in allowed_status %}
+          <option value="{{ s }}" {% if status == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+      </select>
+
+      <select class="select" name="sort">
+        <option value="created" {% if sort=='created' %}selected{% endif %}>Sort: Newest</option>
+        <option value="title" {% if sort=='title' %}selected{% endif %}>Title</option>
+        <option value="author" {% if sort=='author' %}selected{% endif %}>Author</option>
+        <option value="year" {% if sort=='year' %}selected{% endif %}>Year</option>
+        <option value="rating" {% if sort=='rating' %}selected{% endif %}>Rating</option>
+      </select>
+
+      <select class="select" name="dir">
+        <option value="desc" {% if dir=='desc' %}selected{% endif %}>Desc</option>
+        <option value="asc" {% if dir=='asc' %}selected{% endif %}>Asc</option>
+      </select>
+
+      <select class="select" name="page_size">
+        {% for ps in page_sizes %}
+          <option value="{{ ps }}" {% if page_size == ps %}selected{% endif %}>{{ ps }} / page</option>
+        {% endfor %}
+      </select>
+
+      <button class="btn primary" type="submit">Apply</button>
+      <a class="btn" href="{{ url_for('books_list') }}">Reset</a>
+    </div>
+  </form>
+
+  {% if books|length == 0 %}
+    <div class="empty">
+      <h3>No results</h3>
+      <p>Try changing your search or filter, or add a new book.</p>
+    </div>
+  {% else %}
+    <div class="grid">
+      {% for b in books %}
+        <article class="card">
+          <img class="thumb"
+               src="{{ b.image_url if b.image_url else url_for('static', filename='placeholder.svg') }}"
+               alt="Book cover"
+               onerror="this.onerror=null;this.src='{{ url_for('static', filename='placeholder.svg') }}';" />
+
+          <div class="cardbody">
+            <div class="titleline">
+              <h3 class="title">{{ b.title }}</h3>
+              <span class="pill">{{ b.status }}</span>
+            </div>
+            <p class="muted">{{ b.author }} • {{ b.year }} • {{ b.genre }}</p>
+            <p class="muted">Rating: {{ b.rating if b.rating else "—" }}</p>
+
+            <div class="actions">
+              <a class="btn small" href="{{ url_for('books_edit_form', book_id=b.id) }}">Edit</a>
+
+              <form method="post" action="{{ url_for('books_delete', book_id=b.id) }}" class="inline">
+                <button class="btn small danger js-confirm" type="submit"
+                        data-confirm="Delete '{{ b.title }}'? This cannot be undone.">
+                  Delete
+                </button>
+              </form>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="pager">
+      <div class="muted">Page {{ page }} of {{ total_pages }}</div>
+      <div class="pagerbtns">
+        {% set prev_page = page - 1 %}
+        {% set next_page = page + 1 %}
+
+        {% if page > 1 %}
+          <a class="btn small" href="{{ url_for('books_list', page=prev_page, q=q, status=status, sort=sort, dir=dir, page_size=page_size) }}">Previous</a>
+        {% else %}
+          <button class="btn small" disabled>Previous</button>
+        {% endif %}
+
+        {% if page < total_pages %}
+          <a class="btn small" href="{{ url_for('books_list', page=next_page, q=q, status=status, sort=sort, dir=dir, page_size=page_size) }}">Next</a>
+        {% else %}
+          <button class="btn small" disabled>Next</button>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</section>
+
+{% endblock %}

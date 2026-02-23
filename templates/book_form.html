@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="panel">
+  <div class="panelhead">
+    <h2>{{ "Add Book" if mode=="new" else "Edit Book" }}</h2>
+    <div class="meta">Fields marked * are required.</div>
+  </div>
+
+  <form class="form" method="post"
+        action="{{ url_for('books_new_submit') if mode=='new' else url_for('books_edit_submit', book_id=book.id) }}">
+    <div class="twocol">
+      <div>
+        <label>Title *</label>
+        <input class="input" name="title" value="{{ book.title or '' }}" />
+        {% if errors.title %}<div class="err">{{ errors.title }}</div>{% endif %}
+      </div>
+
+      <div>
+        <label>Author *</label>
+        <input class="input" name="author" value="{{ book.author or '' }}" />
+        {% if errors.author %}<div class="err">{{ errors.author }}</div>{% endif %}
+      </div>
+
+      <div>
+        <label>Year *</label>
+        <input class="input" name="year" value="{{ book.year or '' }}" />
+        {% if errors.year %}<div class="err">{{ errors.year }}</div>{% endif %}
+      </div>
+
+      <div>
+        <label>Genre *</label>
+        <input class="input" name="genre" value="{{ book.genre or '' }}" />
+        {% if errors.genre %}<div class="err">{{ errors.genre }}</div>{% endif %}
+      </div>
+
+      <div>
+        <label>Status *</label>
+        <select class="select" name="status">
+          <option value="">Select…</option>
+          {% for s in allowed_status %}
+            <option value="{{ s }}" {% if book.status == s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+        {% if errors.status %}<div class="err">{{ errors.status }}</div>{% endif %}
+      </div>
+
+      <div>
+        <label>Rating (1–5)</label>
+        <input class="input" name="rating" value="{{ book.rating if book.rating is not none else '' }}" />
+        {% if errors.rating %}<div class="err">{{ errors.rating }}</div>{% endif %}
+      </div>
+
+      <div class="span2">
+        <label>Image URL</label>
+        <input class="input" name="image_url" value="{{ book.image_url or '' }}" placeholder="https://..." />
+        <div class="hint">If blank or broken, a placeholder image will be used.</div>
+      </div>
+    </div>
+
+    <div class="formactions">
+      <button class="btn primary" type="submit">Save</button>
+      <a class="btn" href="{{ url_for('books_list') }}">Cancel</a>
+    </div>
+  </form>
+</section>
+
+{% endblock %}
