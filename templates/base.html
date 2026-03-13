@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ title or "Owenschuyler • Collection Manager" }}</title>
+  <title>{{ title or "Owen Schuyler • Portfolio" }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   <script defer src="{{ url_for('static', filename='app.js') }}"></script>
 </head>
@@ -13,18 +13,19 @@
       <div class="brand">
         <div class="brand-mark"></div>
         <div class="brand-text">
-          <h1>Book Collection Manager</h1>
-          <p class="sub">SQL + custom domain + HTTPS</p>
+          <h1>Owen Schuyler</h1>
+          <p class="sub">Computer Science Senior • Portfolio</p>
         </div>
       </div>
-  
+
       <nav class="nav">
-        <a class="navlink" href="{{ url_for('books_list') }}">Books</a>
-        <a class="navlink" href="{{ url_for('books_new_form') }}">Add Book</a>
+        <a class="navlink" href="{{ url_for('home') }}">Home</a>
+        <a class="navlink" href="{{ url_for('books_list') }}">Featured Project</a>
         <a class="navlink" href="{{ url_for('stats_view') }}">Stats</a>
       </nav>
     </div>
   </header>
+
   <main class="container">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
@@ -40,7 +41,7 @@
   </main>
 
   <footer class="footer">
-    <span>Powered by Flask + Postgres on Render</span>
+    <span>Built with Flask + Postgres + Render</span>
   </footer>
 </body>
 </html>

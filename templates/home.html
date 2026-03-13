@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="panel hero">
+  <div class="hero-copy">
+    <p class="eyebrow">Portfolio</p>
+    <h1 class="hero-name">Owen Schuyler</h1>
+    <p class="hero-role">Computer Science Senior</p>
+    <p class="hero-desc">
+      I build full-stack web applications with a focus on clean UI, cloud deployment,
+      and production-ready functionality.
+    </p>
+  </div>
+
+  <div class="featured-project">
+    <p class="eyebrow">Featured Project</p>
+    <h2>Book Collection Manager</h2>
+    <p>
+      A full-stack SQL web application with search, filtering, sorting, pagination,
+      image handling, and cloud deployment on a custom domain.
+    </p>
+
+    <div class="formactions">
+      <a href="{{ url_for('books_list') }}" class="btn primary">View Live App</a>
+      <a href="https://github.com/owen-schuyler/cpsc3750-solo3-production" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
