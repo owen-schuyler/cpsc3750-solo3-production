@@ -223,6 +223,10 @@ def health():
 
 
 @app.get("/")
+def home():
+    return render_template("home.html")
+
+
 @app.get("/books")
 def books_list():
     page_size, set_cookie = get_page_size()
