@@ -425,6 +425,26 @@ label{
   line-height: 1.6;
 }
 
+.other-projects{
+  margin-top: 24px;
+  display: grid;
+  gap: 14px;
+}
+
+.section-copy h2{
+  margin: 0;
+  font-size: 28px;
+}
+
+.project-card{
+  max-width: 560px;
+}
+
+.project-card h3{
+  margin: 0 0 10px;
+  font-size: 22px;
+}
+
 @media (max-width: 900px){
   .hero{
     grid-template-columns: 1fr;
