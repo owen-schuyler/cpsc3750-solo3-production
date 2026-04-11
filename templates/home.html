@@ -1,48 +1,50 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="panel hero">
-  <div class="hero-copy">
-    <p class="eyebrow">Portfolio</p>
-    <h1 class="hero-name">Owen Schuyler</h1>
-    <p class="hero-role">Computer Science Senior | NOC Intern @ Clemson CCIT</p>
-    <p class="hero-desc">
-        I build automation tools and full-stack web applications using Python, SQL, and cloud infrastructure.
-    </p>
-  </div>
-
-  <div class="featured-project">
-    <p class="eyebrow">Featured Project</p>
-    <h2>Persistent Waters</h2>
-    <p>
-      Capstone team project API built in iterative phases with backend services,
-      database integration, and cloud deployment on Render.
-    </p>
-
-    <div class="formactions">
-      <a href="https://persistent-waters.onrender.com/" class="btn primary" target="_blank" rel="noopener noreferrer">View API</a>
-      <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+<div class="portfolio-home">
+  <section class="hero portfolio-hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Full-stack portfolio</p>
+      <h1 class="hero-name">Owen Schuyler</h1>
+      <p class="hero-role">Computer Science Senior | Full-Stack Developer | NOC Intern @ Clemson CCIT</p>
+      <p class="hero-desc">
+        I build full-stack web applications with Python, SQL, server-rendered interfaces, and cloud deployment workflows.
+      </p>
     </div>
-  </div>
-</section>
 
-<section class="other-projects">
-  <div class="section-copy">
-    <p class="eyebrow">Other Projects</p>
-    <h2>Other Projects</h2>
-  </div>
+    <article class="featured-project hero-featured-card">
+      <p class="eyebrow">Featured Project</p>
+      <h2>Persistent Waters</h2>
+      <p>
+        Persistent Waters is a team-built Battleship-style web game with backend-authoritative turns, a live gameplay board, and deployed phase builds.
+      </p>
 
-  <div class="featured-project project-card">
-    <h3>Book Collection Manager</h3>
-    <p>
-      Full-stack Flask + PostgreSQL web app with search, filtering, sorting,
-      pagination, and cloud deployment.
-    </p>
+      <div class="formactions">
+        <a href="https://jenniferjgj.com/persistentwaters/" class="btn primary" target="_blank" rel="noopener noreferrer">View Live App</a>
+        <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+      </div>
+    </article>
+  </section>
 
-    <div class="formactions">
-      <a href="{{ url_for('books_list') }}" class="btn primary">View App</a>
-      <a href="#" class="btn">View Code</a>
+  <section id="projects" class="other-projects">
+    <div class="section-copy">
+      <p class="eyebrow">Selected work</p>
+      <h2>Other Projects</h2>
     </div>
-  </div>
-</section>
+
+    <article class="featured-project project-card">
+      <h3>Book Collection Manager</h3>
+      <p>
+        Book Collection Manager is a Flask and PostgreSQL CRUD app for tracking books with search, filtering, sorting, pagination, and rating data.
+        It is interesting because the list view behaves like a production data table while still using fast server-rendered Jinja templates.
+        I made the query layer whitelist sortable fields and directions so user-controlled filters stay flexible without allowing unsafe SQL ordering.
+      </p>
+
+      <div class="formactions">
+        <a href="{{ url_for('books_list') }}" class="btn primary">View App</a>
+        <a href="https://github.com/owen-schuyler/cpsc3750-solo3-production" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+      </div>
+    </article>
+  </section>
+</div>
 {% endblock %}

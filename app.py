@@ -224,7 +224,12 @@ def health():
 
 @app.get("/")
 def home():
-    return render_template("home.html")
+    return render_template("home.html", title="Owen Schuyler | Portfolio")
+
+
+@app.get("/persistent-waters")
+def persistent_waters():
+    return render_template("persistent_waters.html", title="Persistent Waters | Owen Schuyler")
 
 
 @app.get("/books")
