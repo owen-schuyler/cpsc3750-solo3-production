@@ -1,85 +1,118 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="panel project-detail">
-  <div class="project-hero">
-    <div>
-      <p class="eyebrow">Team Project</p>
-      <h1 class="hero-name">Persistent Waters</h1>
-      <p class="hero-role">Multiphase Battleship-style web game</p>
-      <p class="hero-desc">
-        Persistent Waters lets players run a turn-based naval strategy match in the browser with persistent game state and clear move feedback.
-        It is interesting because the project grew from a deployed Flask API into a playable frontend with live board updates, firing flow, and match history across team-hosted phases.
-        I kept the backend rules authoritative so routing, game logic, turn enforcement, and deployment could support multiple interfaces without duplicating the core match behavior.
-      </p>
-    </div>
+<div class="project-page">
+  <section class="panel project-detail">
+    <div class="project-hero">
+      <div>
+        <p class="eyebrow">Featured Project</p>
+        <h1 class="hero-name">Persistent Waters</h1>
+        <p class="hero-role">Multi-phase Battleship-style web application</p>
+        <p class="hero-desc">
+          Persistent Waters lets players run a turn-based naval strategy match in the browser with persistent game state, firing feedback, and deployed phase builds.
+          It is interesting because the project evolved from a backend API foundation into a playable web app while preserving server-side control over the rules.
+          I kept game-state changes behind backend routes so turn validation, firing resolution, and match persistence stayed authoritative instead of being duplicated in client-side code.
+        </p>
 
-    <div class="featured-project project-summary">
-      <p class="eyebrow">Current Live Build</p>
-      <h2>Phase 2</h2>
-      <p>
-        Play the current Persistent Waters gameplay view with the live board, firing mechanic, polling, and move history.
-      </p>
-      <div class="formactions">
-        <a href="https://jenniferjgj.com/persistentwaters/" class="btn primary" target="_blank" rel="noopener noreferrer">View Live App</a>
-        <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+        <div class="hero-actions">
+          <a href="https://jenniferjgj.com/persistentwaters/" class="btn primary" target="_blank" rel="noopener noreferrer">View Live App</a>
+          <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+          <a href="{{ url_for('home') }}#projects" class="btn ghost">Back to Projects</a>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<section class="phase-grid" aria-label="Persistent Waters phases">
-  <article class="phase-card">
-    <div class="phase-card-head">
-      <p class="eyebrow">Phase 1</p>
-      <a href="https://persistent-waters.onrender.com" class="btn small" target="_blank" rel="noopener noreferrer">Live Link</a>
+      <aside class="featured-project project-summary" aria-label="Persistent Waters project summary">
+        <p class="eyebrow">What to mention in an interview</p>
+        <h2>Backend-authoritative gameplay</h2>
+        <p>
+          The browser presents the board and player actions, but the backend owns the match state,
+          validates turns, resolves shots, and returns the updated game view.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">Application Logic</span>
+          <span class="tag">Deployment</span>
+        </div>
+      </aside>
     </div>
-    <h2>Backend API and Game Foundation</h2>
-    <p>
-      Phase 1 established the deployed game service, including Flask routes, persistent match data, and server-side rules for creating games and resolving turns.
-      It gave the team a stable contract to build against because every move went through the same backend validation path instead of trusting the client.
-      My architecture decision was to keep turn enforcement and firing resolution inside the backend so future phases could add interfaces without weakening the game rules.
-    </p>
-    <h3>My Contributions</h3>
-    <ul class="contribution-list">
-      <li>Backend architecture and route organization</li>
-      <li>Game logic for match state and firing results</li>
-      <li>Turn enforcement to prevent out-of-order play</li>
-      <li>Render deployment setup and production routing checks</li>
-    </ul>
-  </article>
+  </section>
 
-  <article class="phase-card">
-    <div class="phase-card-head">
-      <p class="eyebrow">Phase 2</p>
-      <a href="https://jenniferjgj.com/persistentwaters/" class="btn small" target="_blank" rel="noopener noreferrer">Live Link</a>
+  <section class="section-band" aria-labelledby="phase-heading">
+    <div class="section-copy">
+      <p class="eyebrow">Phase Links</p>
+      <h2 id="phase-heading">Persistent Waters build path</h2>
+      <p>
+        Each phase has one clear destination so the demo can move quickly from architecture story
+        to deployed behavior without hunting through the page.
+      </p>
     </div>
-    <h2>Playable Frontend and Live Match Flow</h2>
-    <p>
-      Phase 2 added the gameplay view players use to inspect the board, fire at coordinates, and follow recent moves during an active match.
-      It is interesting because the frontend has to stay responsive while still respecting a backend-authoritative turn system and repeatedly refreshed game state.
-      My key architecture decision was to use polling around the live board and move history so players could see fresh match state without adding heavier realtime infrastructure for this checkpoint.
-    </p>
-    <h3>My Contributions</h3>
-    <ul class="contribution-list">
-      <li>Gameplay view structure and live board integration</li>
-      <li>Firing mechanic connected to backend move validation</li>
-      <li>Polling for refreshed board state and turn updates</li>
-      <li>Move history display and design polish for the play flow</li>
-    </ul>
-  </article>
 
-  <article class="phase-card muted-phase">
-    <div class="phase-card-head">
-      <p class="eyebrow">Phase 3</p>
-      <span class="pill">Coming Soon</span>
+    <div class="phase-grid" aria-label="Persistent Waters phases">
+      <article class="phase-card">
+        <div class="phase-card-head">
+          <p class="eyebrow">Phase 1</p>
+          <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn small" target="_blank" rel="noopener noreferrer">View Code</a>
+        </div>
+        <h3>Backend API and Game Foundation</h3>
+        <p>
+          Established the initial game service with Flask routes, persistent match data, and
+          server-side rules for creating games and resolving turns.
+        </p>
+      </article>
+
+      <article class="phase-card featured-phase">
+        <div class="phase-card-head">
+          <p class="eyebrow">Phase 2</p>
+          <a href="https://jenniferjgj.com/persistentwaters/" class="btn small primary" target="_blank" rel="noopener noreferrer">Open Phase 2</a>
+        </div>
+        <h3>Playable Frontend and Live Match Flow</h3>
+        <p>
+          Added the browser gameplay view with board state, firing controls, polling updates,
+          and move history for a complete playable loop.
+        </p>
+      </article>
+
+      <article class="phase-card">
+        <div class="phase-card-head">
+          <p class="eyebrow">Phase 3</p>
+          <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn small" target="_blank" rel="noopener noreferrer">View Code</a>
+        </div>
+        <h3>Checkpoint 3 Presentation Package</h3>
+        <p>
+          Consolidated the shipped system narrative, contribution details, and deployment links
+          into a portfolio-ready explanation for review and demo recording.
+        </p>
+      </article>
     </div>
-    <h2>Final Checkpoint</h2>
+  </section>
+
+  <section class="section-band split-section" aria-labelledby="contributions-heading">
+    <div class="section-copy">
+      <p class="eyebrow">My Contributions</p>
+      <h2 id="contributions-heading">Specific work I can explain</h2>
+    </div>
+
+    <div class="contribution-panel">
+      <ul class="contribution-list">
+        <li>Designed backend route responsibilities so game creation, firing actions, and match retrieval stayed organized around server-owned state.</li>
+        <li>Implemented gameplay logic for validating turns, resolving shots, and returning consistent match results to the interface.</li>
+        <li>Connected the playable board flow to backend endpoints so player actions were processed through the same validation path used by the API.</li>
+        <li>Supported iterative deployment across phase builds, keeping the project demoable while the frontend and match flow evolved.</li>
+        <li>Polished the portfolio explanation around architecture, deployment, and user-facing behavior so the project reads as a shipped system.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section-band architecture-card" aria-labelledby="architecture-heading">
+    <p class="eyebrow">Architecture Decision</p>
+    <h2 id="architecture-heading">Keep game rules authoritative on the backend</h2>
     <p>
-      Phase 3 will document the next iteration after the final team checkpoint is complete.
-      The page is reserved now so the portfolio already reflects the full three-phase structure required for the project.
-      The next architecture note will describe the most important implementation decision from that final phase once it is finished.
+      The most important design decision was to treat the Flask backend as the source of truth for
+      match state, turn order, and firing outcomes. That kept the frontend focused on presentation
+      and input while reducing the risk of inconsistent client-side game logic as the project moved
+      through multiple phases.
     </p>
-  </article>
-</section>
+  </section>
+</div>
 {% endblock %}

@@ -2,49 +2,177 @@
 
 {% block content %}
 <div class="portfolio-home">
-  <section class="hero portfolio-hero">
+  <section class="hero portfolio-hero" id="home" aria-labelledby="home-title">
     <div class="hero-copy">
-      <p class="eyebrow">Full-stack portfolio</p>
-      <h1 class="hero-name">Owen Schuyler</h1>
+      <p class="eyebrow">Software Engineering Portfolio</p>
+      <h1 id="home-title" class="hero-name">Owen Schuyler</h1>
       <p class="hero-role">Computer Science Senior | Full-Stack Developer | NOC Intern @ Clemson CCIT</p>
       <p class="hero-desc">
-        I build full-stack web applications with Python, SQL, server-rendered interfaces, and cloud deployment workflows.
+        I build automation tools, backend systems, and deployed web applications using Python, SQL,
+        server-rendered interfaces, Linux, REST APIs, and cloud infrastructure.
       </p>
+
+      <div class="hero-actions" aria-label="Primary portfolio actions">
+        <a href="#featured-project" class="btn primary">Explore Featured Project</a>
+        <a href="#projects" class="btn">View Other Work</a>
+      </div>
+
+      <div class="quick-proof" aria-label="Portfolio highlights">
+        <span>Full-stack systems</span>
+        <span>Backend + data logic</span>
+        <span>Deployed applications</span>
+      </div>
     </div>
 
-    <article class="featured-project hero-featured-card">
-      <p class="eyebrow">Featured Project</p>
+    <article id="featured-project" class="featured-project hero-featured-card">
+      <div class="card-kicker-row">
+        <p class="eyebrow">Featured Full-Stack Showcase</p>
+        <span class="status-dot">Live</span>
+      </div>
       <h2>Persistent Waters</h2>
       <p>
-        Persistent Waters is a team-built Battleship-style web game with backend-authoritative turns, a live gameplay board, and deployed phase builds.
+        A multi-phase Battleship-style web system with backend-authoritative gameplay,
+        persistent match state, deployed phase builds, and an iterative path from API foundation
+        to playable application.
       </p>
+
+      <div class="tag-row" aria-label="Persistent Waters stack">
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Deployment</span>
+      </div>
 
       <div class="formactions">
         <a href="https://jenniferjgj.com/persistentwaters/" class="btn primary" target="_blank" rel="noopener noreferrer">View Live App</a>
         <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+        <a href="{{ url_for('persistent_waters') }}" class="btn ghost">See Details</a>
       </div>
     </article>
   </section>
 
-  <section id="projects" class="other-projects">
-    <div class="section-copy">
-      <p class="eyebrow">Selected work</p>
-      <h2>Other Projects</h2>
+  <section class="section-band demo-path" aria-labelledby="demo-path-title">
+    <div class="section-copy narrow">
+      <p class="eyebrow">Demo Path</p>
+      <h2 id="demo-path-title">Interview-ready in under a minute</h2>
+      <p>
+        Start on the homepage, open Persistent Waters, launch the live app, then return to the detail
+        page to explain the backend-authoritative architecture decision and open the repository.
+      </p>
     </div>
 
-    <article class="featured-project project-card">
-      <h3>Book Collection Manager</h3>
-      <p>
-        Book Collection Manager is a Flask and PostgreSQL CRUD app for tracking books with search, filtering, sorting, pagination, and rating data.
-        It is interesting because the list view behaves like a production data table while still using fast server-rendered Jinja templates.
-        I made the query layer whitelist sortable fields and directions so user-controlled filters stay flexible without allowing unsafe SQL ordering.
-      </p>
+    <div class="proof-grid">
+      <article class="proof-card">
+        <span class="proof-number">01</span>
+        <h3>Who I am</h3>
+        <p>Computer Science senior, full-stack developer, and NOC intern at Clemson CCIT.</p>
+      </article>
+      <article class="proof-card">
+        <span class="proof-number">02</span>
+        <h3>What I build</h3>
+        <p>Automation, backend systems, REST APIs, server-rendered interfaces, and deployed apps.</p>
+      </article>
+      <article class="proof-card">
+        <span class="proof-number">03</span>
+        <h3>What to explore</h3>
+        <p>A featured full-stack team system, deployed project phases, and supporting backend work.</p>
+      </article>
+    </div>
+  </section>
 
-      <div class="formactions">
-        <a href="{{ url_for('books_list') }}" class="btn primary">View App</a>
-        <a href="https://github.com/owen-schuyler/cpsc3750-solo3-production" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
-      </div>
-    </article>
+  <section class="section-band phase-overview" aria-labelledby="phase-title">
+    <div class="section-copy">
+      <p class="eyebrow">Persistent Waters Phases</p>
+      <h2 id="phase-title">Three shipped checkpoints, one system narrative</h2>
+    </div>
+
+    <div class="mini-phase-grid">
+      <article class="mini-phase-card">
+        <p class="eyebrow">Phase 1</p>
+        <h3>Backend API Foundation</h3>
+        <p>Established initial Flask routes, match persistence, and server-side gameplay rules.</p>
+        <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn small" target="_blank" rel="noopener noreferrer">View Code</a>
+      </article>
+
+      <article class="mini-phase-card highlighted">
+        <p class="eyebrow">Phase 2</p>
+        <h3>Playable Match Flow</h3>
+        <p>Added the live gameplay board, firing flow, polling updates, and move history.</p>
+        <a href="https://jenniferjgj.com/persistentwaters/" class="btn small primary" target="_blank" rel="noopener noreferrer">Open Phase 2</a>
+      </article>
+
+      <article class="mini-phase-card">
+        <p class="eyebrow">Phase 3</p>
+        <h3>Checkpoint 3 Package</h3>
+        <p>Refined the portfolio-ready explanation, contribution story, and project presentation.</p>
+        <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn small" target="_blank" rel="noopener noreferrer">View Code</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects" class="section-band other-projects" aria-labelledby="projects-title">
+    <div class="section-copy">
+      <p class="eyebrow">Selected Work</p>
+      <h2 id="projects-title">Other Projects</h2>
+      <p>
+        Supporting projects show the same engineering pattern at smaller scopes: model the data,
+        define safe interfaces, and ship a usable workflow.
+      </p>
+    </div>
+
+    <div class="project-grid">
+      <article class="project-card premium-card">
+        <div class="project-card-top">
+          <h3>Book Collection Manager</h3>
+          <span class="project-type">Live Flask App</span>
+        </div>
+        <p>
+          A Flask and PostgreSQL CRUD application for managing a book collection with search,
+          filtering, sorting, pagination, validation, and persistent data.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Flask</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Jinja</span>
+        </div>
+        <div class="formactions">
+          <a href="{{ url_for('books_list') }}" class="btn primary">View App</a>
+          <a href="https://github.com/owen-schuyler/cpsc3750-solo3-production" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+        </div>
+      </article>
+
+      <article class="project-card premium-card">
+        <div class="project-card-top">
+          <h3>StatusHub Slack Integration</h3>
+          <span class="project-type">Automation</span>
+        </div>
+        <p>
+          A Slack-oriented operational status workflow designed to surface service updates clearly
+          and reduce manual coordination during infrastructure monitoring.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Automation</span>
+          <span class="tag">Slack Workflow</span>
+          <span class="tag">Operations</span>
+        </div>
+      </article>
+
+      <article class="project-card premium-card">
+        <div class="project-card-top">
+          <h3>TigerChow REST API</h3>
+          <span class="project-type">Backend API</span>
+        </div>
+        <p>
+          A REST API concept for food-service data that emphasizes clean endpoint structure,
+          predictable request handling, and backend logic that can support multiple clients.
+        </p>
+        <div class="tag-row">
+          <span class="tag">REST API</span>
+          <span class="tag">Backend</span>
+          <span class="tag">Data Modeling</span>
+        </div>
+      </article>
+    </div>
   </section>
 </div>
 {% endblock %}

@@ -4,6 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ title or "Owen Schuyler • Portfolio" }}</title>
+  <meta
+    name="description"
+    content="Owen Schuyler is a Computer Science senior and full-stack developer building automation tools, backend systems, and deployed web applications."
+  />
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   <script defer src="{{ url_for('static', filename='app.js') }}"></script>
 </head>
@@ -14,12 +18,13 @@
         <div class="brand-mark"></div>
         <div class="brand-text">
           <h1>Owen Schuyler</h1>
-          <p class="sub">Computer Science Senior • Portfolio</p>
+          <p class="sub">Full-Stack Developer</p>
         </div>
       </div>
 
       <nav class="nav">
         <a class="navlink" href="{{ url_for('home') }}">Home</a>
+        <a class="navlink" href="{{ url_for('persistent_waters') }}">Featured</a>
         <a class="navlink" href="{{ url_for('home') }}#projects">Projects</a>
         <a class="navlink" href="https://github.com/owen-schuyler" target="_blank" rel="noopener noreferrer">GitHub</a>
       </nav>
@@ -41,7 +46,7 @@
   </main>
 
   <footer class="footer">
-    <span>Built with Flask + Postgres + Render</span>
+    <span>Owen Schuyler | Flask, Postgres, Jinja, Render</span>
   </footer>
 </body>
 </html>
