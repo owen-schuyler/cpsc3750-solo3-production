@@ -487,7 +487,7 @@ label{
 
 .portfolio-hero{
   min-height: 680px;
-  padding: 96px 0 86px;
+  padding: 96px 0 58px;
 }
 
 .quick-proof{
@@ -627,6 +627,11 @@ label{
   gap: 16px;
 }
 
+.hero-proof-grid{
+  grid-column: 1 / -1;
+  margin-top: -18px;
+}
+
 .proof-card{
   padding: 22px;
   box-shadow: none;
@@ -658,6 +663,10 @@ label{
 
 .mini-phase-grid{
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.phase-overview{
+  padding-top: 58px;
 }
 
 .mini-phase-card,
@@ -792,7 +801,11 @@ label{
   .portfolio-hero{
     min-height: auto;
     gap: 36px;
-    padding: 74px 0 64px;
+    padding: 74px 0 48px;
+  }
+
+  .hero-proof-grid{
+    margin-top: 0;
   }
 
   .form .twocol{
@@ -833,7 +846,7 @@ label{
   }
 
   .portfolio-hero{
-    padding: 52px 0 46px;
+    padding: 52px 0 38px;
   }
 
   .featured-project,
