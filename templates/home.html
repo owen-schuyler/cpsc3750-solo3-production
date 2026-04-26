@@ -2,162 +2,393 @@
 
 {% block content %}
 <div class="portfolio-home">
-  <section class="hero portfolio-hero" id="home" aria-labelledby="home-title">
+  <section class="hero" id="home" aria-labelledby="home-title">
     <div class="hero-copy">
-      <p class="eyebrow">Software Engineering Portfolio</p>
+      <p class="eyebrow">Interview-Ready Portfolio</p>
       <h1 id="home-title" class="hero-name">Owen Schuyler</h1>
-      <p class="hero-role">Computer Science Senior | Full-Stack Developer | NOC Intern @ Clemson CCIT</p>
+      <p class="hero-role">Senior Computer Science Student | Full-Stack Developer | Former CCIT NOC Automation Intern</p>
       <p class="hero-desc">
-        I build automation tools, backend systems, and deployed web applications using Python, SQL,
-        server-rendered interfaces, Linux, REST APIs, and cloud infrastructure.
+        I build automation tools, backend systems, and full-stack applications using Python, SQL,
+        REST APIs, Linux, and cloud infrastructure. My recent work includes operational automation
+        for Clemson CCIT's Network Operations Center and deployed web applications with database-backed workflows.
       </p>
 
       <div class="hero-actions" aria-label="Primary portfolio actions">
-        <a href="#featured-project" class="btn primary">Explore Featured Project</a>
-        <a href="#projects" class="btn">View Other Work</a>
+        <a class="btn primary" href="#featured-work">View Featured Work</a>
+        <a
+          class="btn secondary"
+          href="https://github.com/owen-schuyler"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Owen Schuyler GitHub profile in a new tab"
+        >
+          View GitHub
+        </a>
       </div>
 
-      <div class="quick-proof" aria-label="Portfolio highlights">
-        <span>Full-stack systems</span>
-        <span>Backend + data logic</span>
-        <span>Deployed applications</span>
+      <div class="quick-proof" aria-label="At-a-glance qualifications">
+        <span>Python + Flask</span>
+        <span>SQL + REST APIs</span>
+        <span>AWS + Linux</span>
+        <span>Automation + Monitoring</span>
       </div>
     </div>
 
-    <article id="featured-project" class="featured-project hero-featured-card">
-      <div class="card-kicker-row">
-        <p class="eyebrow">Featured Full-Stack Showcase</p>
-        <span class="status-dot">Live</span>
-      </div>
-      <h2>Persistent Waters</h2>
-      <p>
-        A multi-phase Battleship-style web system with backend-authoritative gameplay,
-        persistent match state, deployed phase builds, and an iterative path from API foundation
-        to playable application.
-      </p>
-
-      <div class="tag-row" aria-label="Persistent Waters stack">
-        <span class="tag">Python</span>
-        <span class="tag">Flask</span>
-        <span class="tag">REST APIs</span>
-        <span class="tag">Deployment</span>
+    <aside class="hero-profile-card" aria-label="Professional summary">
+      <div class="avatar-card" aria-hidden="true">
+        <span>OS</span>
       </div>
 
-      <div class="formactions">
-        <a href="https://jenniferjgj.com/persistentwaters/" class="btn primary" target="_blank" rel="noopener noreferrer">View Live App</a>
-        <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
-        <a href="{{ url_for('persistent_waters') }}" class="btn ghost">See Details</a>
+      <div class="profile-copy">
+        <p class="eyebrow">Quick Snapshot</p>
+        <h2>What I build</h2>
+        <p>
+          Full-stack systems with clear user workflows, backend logic, reporting, and stable deployment.
+        </p>
       </div>
+
+      <dl class="profile-facts">
+        <div>
+          <dt>Education</dt>
+          <dd>Clemson University, B.S. Computer Science, expected Dec 2026</dd>
+        </div>
+        <div>
+          <dt>Industry Context</dt>
+          <dd>Embedded with Clemson CCIT's 20+ person Network Operations Center automation team</dd>
+        </div>
+        <div>
+          <dt>Focus Areas</dt>
+          <dd>Backend systems, incident workflows, infrastructure automation, and cloud-supported apps</dd>
+        </div>
+      </dl>
+    </aside>
+  </section>
+
+  <section class="signal-grid" aria-label="5-second test summary">
+    <article class="signal-card">
+      <span class="signal-number">01</span>
+      <h2>Who I am</h2>
+      <p>Senior Computer Science student preparing for full-stack and backend engineering roles.</p>
     </article>
-
-    <div class="proof-grid hero-proof-grid">
-      <article class="proof-card">
-        <span class="proof-number">01</span>
-        <h3>Who I am</h3>
-        <p>Computer Science senior, full-stack developer, and NOC intern at Clemson CCIT.</p>
-      </article>
-      <article class="proof-card">
-        <span class="proof-number">02</span>
-        <h3>What I build</h3>
-        <p>Automation, backend systems, REST APIs, server-rendered interfaces, and deployed apps.</p>
-      </article>
-      <article class="proof-card">
-        <span class="proof-number">03</span>
-        <h3>What to explore</h3>
-        <p>A featured full-stack team system, deployed project phases, and supporting backend work.</p>
-      </article>
-    </div>
+    <article class="signal-card">
+      <span class="signal-number">02</span>
+      <h2>What I build</h2>
+      <p>Automation tools, database-backed applications, reporting flows, and operational integrations.</p>
+    </article>
+    <article class="signal-card">
+      <span class="signal-number">03</span>
+      <h2>Where to start</h2>
+      <p>Begin with the featured capstone project, then review Persistent Waters for team project progression.</p>
+    </article>
   </section>
 
-  <section class="section-band phase-overview" aria-labelledby="phase-title">
+  <section id="featured-work" class="section-band" aria-labelledby="featured-work-title">
     <div class="section-copy">
-      <p class="eyebrow">Persistent Waters Phases</p>
-      <h2 id="phase-title">Three shipped checkpoints, one system narrative</h2>
-    </div>
-
-    <div class="mini-phase-grid">
-      <article class="mini-phase-card">
-        <p class="eyebrow">Phase 1</p>
-        <h3>Backend API Foundation</h3>
-        <p>Established initial Flask routes, match persistence, and server-side gameplay rules.</p>
-        <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn small" target="_blank" rel="noopener noreferrer">View Code</a>
-      </article>
-
-      <article class="mini-phase-card highlighted">
-        <p class="eyebrow">Phase 2</p>
-        <h3>Playable Match Flow</h3>
-        <p>Added the live gameplay board, firing flow, polling updates, and move history.</p>
-        <a href="https://jenniferjgj.com/persistentwaters/" class="btn small primary" target="_blank" rel="noopener noreferrer">Open Phase 2</a>
-      </article>
-
-      <article class="mini-phase-card">
-        <p class="eyebrow">Phase 3</p>
-        <h3>Checkpoint 3 Package</h3>
-        <p>Refined the portfolio-ready explanation, contribution story, and project presentation.</p>
-        <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn small" target="_blank" rel="noopener noreferrer">View Code</a>
-      </article>
-    </div>
-  </section>
-
-  <section id="projects" class="section-band other-projects" aria-labelledby="projects-title">
-    <div class="section-copy">
-      <p class="eyebrow">Selected Work</p>
-      <h2 id="projects-title">Other Projects</h2>
+      <p class="eyebrow">Featured Work</p>
+      <h2 id="featured-work-title">Strongest projects first</h2>
       <p>
-        Supporting projects show the same engineering pattern at smaller scopes: model the data,
-        define safe interfaces, and ship a usable workflow.
+        These are the projects I would lead with in an interview because they show full-stack delivery,
+        role-based workflows, deployed systems, and concrete engineering decisions.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <article class="feature-card feature-card-primary">
+        <div class="card-kicker-row">
+          <p class="eyebrow">Senior Capstone</p>
+          <span class="status-pill">Live App</span>
+        </div>
+        <h3>Good Driver Incentive Program</h3>
+        <p>
+          A full-stack incentive platform for the trucking industry where sponsors reward drivers with points
+          for safe driving behavior and drivers redeem those points through sponsor-managed catalogs.
+        </p>
+        <div class="tag-row" aria-label="Good Driver Incentive Program technology and features">
+          <span class="tag">Full-Stack Web App</span>
+          <span class="tag">Role-Based Workflows</span>
+          <span class="tag">Reporting</span>
+          <span class="tag">Audit Logging</span>
+          <span class="tag">AWS Deployment</span>
+        </div>
+        <div class="feature-highlights">
+          <span>Sponsor catalogs and point tracking</span>
+          <span>Database-backed admin workflows</span>
+          <span>Responsive UI for multiple user roles</span>
+        </div>
+        <div class="hero-actions">
+          <a
+            class="btn primary"
+            href="http://44.203.157.167/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Good Driver Incentive Program live app in a new tab"
+          >
+            View Live App
+          </a>
+          <a class="btn secondary" href="#case-study">Read Case Study</a>
+        </div>
+      </article>
+
+      <article class="feature-card">
+        <div class="card-kicker-row">
+          <p class="eyebrow">Team Project</p>
+          <span class="status-pill">Live + Code</span>
+        </div>
+        <h3>Persistent Waters</h3>
+        <p>
+          A multi-phase Battleship-style web application that progressed from API foundations to a
+          deployed, backend-authoritative gameplay experience with persistent match state.
+        </p>
+        <div class="tag-row" aria-label="Persistent Waters technologies">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">Deployment</span>
+        </div>
+        <div class="hero-actions">
+          <a
+            class="btn primary"
+            href="https://jenniferjgj.com/persistentwaters/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters live app in a new tab"
+          >
+            View Live App
+          </a>
+          <a
+            class="btn secondary"
+            href="https://github.com/jenniferjtk/Persistent-Waters"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters GitHub repository in a new tab"
+          >
+            View Code
+          </a>
+          <a class="btn ghost" href="{{ url_for('persistent_waters') }}">Project Details</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="case-study" class="section-band case-study" aria-labelledby="case-study-title">
+    <div class="section-copy narrow">
+      <p class="eyebrow">Project Details</p>
+      <h2 id="case-study-title">Good Driver Incentive Program case study</h2>
+      <p>
+        The Good Driver Incentive Program is a full-stack web application for trucking sponsors,
+        drivers, and administrators to manage points, rewards, reports, catalogs, and audit-ready account activity.
+        It is interesting because it supports multiple user roles with different workflows while keeping the overall experience usable and responsive.
+        A key architecture decision was keeping point tracking, reporting, and audit-sensitive actions tied to database-backed server logic so business rules remain consistent across roles.
+      </p>
+    </div>
+
+    <div class="case-study-grid">
+      <article class="detail-card">
+        <p class="eyebrow">Why it matters</p>
+        <h3>Full-stack workflow depth</h3>
+        <p>
+          This project demonstrates more than a landing page or CRUD demo: it includes role-aware navigation,
+          sponsor-managed catalogs, driver redemption flows, reports, and admin-level controls.
+        </p>
+      </article>
+
+      <article class="detail-card">
+        <p class="eyebrow">Architecture focus</p>
+        <h3>Data-backed accountability</h3>
+        <p>
+          Point balances, reports, and audit logs are strongest when the backend owns the logic,
+          making the application easier to reason about and safer to extend.
+        </p>
+      </article>
+
+      <article class="detail-card">
+        <p class="eyebrow">Deployment</p>
+        <h3>AWS-hosted capstone delivery</h3>
+        <p>
+          The live application is deployed and accessible, which makes it easy to demo real workflows quickly
+          during a portfolio review or interview conversation.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="team-phases" class="section-band" aria-labelledby="team-phases-title">
+    <div class="section-copy">
+      <p class="eyebrow">Team Project Phases</p>
+      <h2 id="team-phases-title">Persistent Waters progression across three phases</h2>
+      <p>
+        Each phase has one working destination so the project story is easy to follow without sending reviewers into broken or ambiguous paths.
+      </p>
+    </div>
+
+    <div class="phase-grid" aria-label="Persistent Waters phase progression">
+      <article class="phase-card">
+        <div class="phase-card-head">
+          <p class="eyebrow">Phase 1</p>
+          <a
+            class="btn small secondary"
+            href="https://github.com/jenniferjtk/Persistent-Waters"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters GitHub repository for Phase 1 in a new tab"
+          >
+            View Code
+          </a>
+        </div>
+        <h3>Backend API foundation</h3>
+        <p>Established Flask routes, match state handling, and server-owned gameplay rules as the project baseline.</p>
+      </article>
+
+      <article class="phase-card featured-phase">
+        <div class="phase-card-head">
+          <p class="eyebrow">Phase 2</p>
+          <a
+            class="btn small primary"
+            href="https://jenniferjgj.com/persistentwaters/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters live phase 2 build in a new tab"
+          >
+            Open Live Build
+          </a>
+        </div>
+        <h3>Playable web application</h3>
+        <p>Added the live board, move flow, polling updates, and player-facing interactions for a complete demo path.</p>
+      </article>
+
+      <article class="phase-card">
+        <div class="phase-card-head">
+          <p class="eyebrow">Phase 3</p>
+          <a
+            class="btn small secondary"
+            href="https://github.com/jenniferjtk/Persistent-Waters"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters GitHub repository for Phase 3 in a new tab"
+          >
+            View Code
+          </a>
+        </div>
+        <h3>Refinement and presentation</h3>
+        <p>Packaged the system narrative, contribution story, and project explanation into a rubric-ready submission.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section-band contributions-section" aria-labelledby="contributions-title">
+    <div class="section-copy">
+      <p class="eyebrow">My Contributions</p>
+      <h2 id="contributions-title">Specific work, not generic team language</h2>
+      <p>
+        These bullets are written to be defensible in a walkthrough and specific enough to support interview follow-up questions.
+      </p>
+    </div>
+
+    <div class="contribution-columns">
+      <article class="contribution-card">
+        <h3>Persistent Waters</h3>
+        <ul class="contribution-list">
+          <li>Structured backend route responsibilities so game creation, move submission, and match retrieval stayed organized around server-owned state.</li>
+          <li>Implemented or supported gameplay validation logic for turns, shot resolution, and consistent match updates returned to the frontend.</li>
+          <li>Connected the playable board flow to backend endpoints so player actions passed through the same validation path as the API layer.</li>
+          <li>Helped keep the project demoable across phased deliveries by supporting iterative deployment and presentation polish.</li>
+        </ul>
+      </article>
+
+      <article class="contribution-card">
+        <h3>Good Driver Incentive Program</h3>
+        <ul class="contribution-list">
+          <li>Built and presented a full-stack incentive platform centered on sponsor, driver, and admin workflows instead of a single-user demo path.</li>
+          <li>Emphasized database-backed features such as point tracking, catalog management, reporting, and audit-oriented activity visibility.</li>
+          <li>Shaped the project around operationally useful flows where multiple roles manage users, rewards, and accountability across the same system.</li>
+          <li>Delivered a responsive, publicly reachable capstone demo suitable for quick portfolio review.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="other-projects" class="section-band" aria-labelledby="other-projects-title">
+    <div class="section-copy">
+      <p class="eyebrow">Other Projects</p>
+      <h2 id="other-projects-title">Supporting work across backend, automation, and data</h2>
+      <p>
+        These projects reinforce the same strengths without surfacing broken demos or placeholder links.
       </p>
     </div>
 
     <div class="project-grid">
-      <article class="project-card premium-card">
+      <article class="project-card">
         <div class="project-card-top">
           <h3>Book Collection Manager</h3>
-          <span class="project-type">Live Flask App</span>
+          <span class="project-type">Code Only</span>
         </div>
         <p>
-          A Flask and PostgreSQL CRUD application for managing a book collection with search,
-          filtering, sorting, pagination, validation, and persistent data.
+          Flask and PostgreSQL CRUD application with search, filtering, sorting, validation, pagination,
+          and persistent data. The public app link is intentionally hidden because the old database configuration currently returns errors.
         </p>
         <div class="tag-row">
           <span class="tag">Flask</span>
           <span class="tag">PostgreSQL</span>
           <span class="tag">Jinja</span>
         </div>
-        <div class="formactions">
-          <a href="https://github.com/owen-schuyler/cpsc3750-solo3-production" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
+        <div class="hero-actions">
+          <a
+            class="btn secondary"
+            href="https://github.com/owen-schuyler/cpsc3750-solo3-production"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Book Collection Manager GitHub repository in a new tab"
+          >
+            View Code
+          </a>
         </div>
       </article>
 
-      <article class="project-card premium-card">
+      <article class="project-card">
         <div class="project-card-top">
           <h3>StatusHub Slack Integration</h3>
           <span class="project-type">Automation</span>
         </div>
         <p>
-          A Slack-oriented operational status workflow designed to surface service updates clearly
-          and reduce manual coordination during infrastructure monitoring.
+          Slack bot integration for StatusHub incident workflows with HMAC SHA-256 request validation,
+          replay attack protection, and Linux systemd deployment for stable service operation.
         </p>
         <div class="tag-row">
-          <span class="tag">Automation</span>
-          <span class="tag">Slack Workflow</span>
-          <span class="tag">Operations</span>
+          <span class="tag">Slack API</span>
+          <span class="tag">StatusHub API</span>
+          <span class="tag">systemd</span>
         </div>
       </article>
 
-      <article class="project-card premium-card">
+      <article class="project-card">
         <div class="project-card-top">
           <h3>TigerChow REST API</h3>
           <span class="project-type">Backend API</span>
         </div>
         <p>
-          A REST API concept for food-service data that emphasizes clean endpoint structure,
-          predictable request handling, and backend logic that can support multiple clients.
+          Serverless REST API project using AWS Lambda, API Gateway, and CloudWatch to support
+          backend endpoints, request handling, and operational visibility.
         </p>
         <div class="tag-row">
-          <span class="tag">REST API</span>
-          <span class="tag">Backend</span>
-          <span class="tag">Data Modeling</span>
+          <span class="tag">AWS Lambda</span>
+          <span class="tag">API Gateway</span>
+          <span class="tag">CloudWatch</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-card-top">
+          <h3>Data Science Predictive Modeling</h3>
+          <span class="project-type">Data Science</span>
+        </div>
+        <p>
+          Predictive modeling work using NHANES data pipelines, classification and regression models,
+          feature preparation, and cross-validation for more reliable evaluation.
+        </p>
+        <div class="tag-row">
+          <span class="tag">pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">scikit-learn</span>
         </div>
       </article>
     </div>

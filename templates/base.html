@@ -3,38 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ title or "Owen Schuyler • Portfolio" }}</title>
+  <title>{{ title or "Owen Schuyler | Portfolio" }}</title>
   <meta
     name="description"
-    content="Owen Schuyler is a Computer Science senior and full-stack developer building automation tools, backend systems, and deployed web applications."
+    content="Owen Schuyler is a senior Computer Science student and full-stack developer building automation tools, backend systems, and production-ready web applications."
   />
+  <script>
+    (function () {
+      var savedTheme = localStorage.getItem("portfolio-theme");
+      document.documentElement.setAttribute("data-theme", savedTheme === "dark" ? "dark" : "light");
+    })();
+  </script>
   <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   <script defer src="{{ url_for('static', filename='app.js') }}"></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="brand-mark"></div>
-        <div class="brand-text">
-          <h1>Owen Schuyler</h1>
-          <p class="sub">Full-Stack Developer</p>
-        </div>
-      </div>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-      <nav class="nav">
-        <a class="navlink" href="{{ url_for('home') }}">Home</a>
-        <a class="navlink" href="{{ url_for('persistent_waters') }}">Featured</a>
-        <a class="navlink" href="{{ url_for('home') }}#projects">Projects</a>
-        <a class="navlink" href="https://github.com/owen-schuyler" target="_blank" rel="noopener noreferrer">GitHub</a>
-      </nav>
+  <header class="site-header">
+    <div class="topbar-inner">
+      <a class="brand" href="{{ url_for('home') }}" aria-label="Go to Owen Schuyler portfolio home">
+        <span class="brand-mark" aria-hidden="true">OS</span>
+        <span class="brand-text">
+          <span class="brand-name">Owen Schuyler</span>
+          <span class="brand-sub">Senior CS Student + Full-Stack Developer</span>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="navlink" href="{{ url_for('home') }}#featured-work">Featured Work</a>
+          <a class="navlink" href="{{ url_for('home') }}#case-study">Case Study</a>
+          <a class="navlink" href="{{ url_for('home') }}#team-phases">Team Phases</a>
+          <a class="navlink" href="{{ url_for('home') }}#other-projects">Other Projects</a>
+          <a
+            class="navlink"
+            href="https://github.com/owen-schuyler"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open Owen Schuyler GitHub profile in a new tab"
+          >
+            GitHub
+          </a>
+        </nav>
+
+        <button
+          class="theme-toggle"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+        >
+          <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+          <span class="theme-toggle-label">Dark mode</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main id="main-content" class="container">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
-        <div class="flashwrap">
+        <div class="flashwrap" role="status" aria-live="polite">
           {% for category, msg in messages %}
             <div class="flash {{ category }}">{{ msg }}</div>
           {% endfor %}
@@ -46,7 +76,25 @@
   </main>
 
   <footer class="footer">
-    <span>Owen Schuyler | Flask, Postgres, Jinja, Render</span>
+    <div class="footer-inner">
+      <div>
+        <p class="footer-title">Owen Schuyler</p>
+        <p class="footer-copy">B.S. Computer Science, Clemson University, expected December 2026.</p>
+      </div>
+
+      <div class="footer-links" aria-label="Footer links">
+        <a
+          href="https://github.com/owen-schuyler"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Owen Schuyler GitHub profile in a new tab"
+        >
+          GitHub
+        </a>
+        <a href="{{ url_for('home') }}#featured-work">Featured Work</a>
+        <a href="{{ url_for('home') }}#other-projects">Other Projects</a>
+      </div>
+    </div>
   </footer>
 </body>
 </html>

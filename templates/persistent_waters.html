@@ -2,49 +2,64 @@
 
 {% block content %}
 <div class="project-page">
-  <section class="panel project-detail">
+  <section class="section-band project-hero-band" aria-labelledby="persistent-title">
     <div class="project-hero">
-      <div>
-        <p class="eyebrow">Featured Project</p>
-        <h1 class="hero-name">Persistent Waters</h1>
-        <p class="hero-role">Multi-phase Battleship-style web application</p>
+      <div class="project-hero-copy">
+        <p class="eyebrow">Featured Team Project</p>
+        <h1 id="persistent-title" class="project-title">Persistent Waters</h1>
+        <p class="project-subtitle">Multi-phase Battleship-style web application with backend-authoritative gameplay</p>
         <p class="hero-desc">
-          Persistent Waters lets players run a turn-based naval strategy match in the browser with persistent game state, firing feedback, and deployed phase builds.
-          It is interesting because the project evolved from a backend API foundation into a playable web app while preserving server-side control over the rules.
-          I kept game-state changes behind backend routes so turn validation, firing resolution, and match persistence stayed authoritative instead of being duplicated in client-side code.
+          Persistent Waters lets players run a turn-based naval strategy match in the browser with persistent game state,
+          firing feedback, and phased deliveries from backend foundations to a playable app. It is interesting because the
+          project grew into a live system without moving core game rules into fragile client-side logic. The key architecture
+          decision was keeping turn validation, firing outcomes, and match persistence on the backend so the frontend could stay focused on presentation and player input.
         </p>
 
         <div class="hero-actions">
-          <a href="https://jenniferjgj.com/persistentwaters/" class="btn primary" target="_blank" rel="noopener noreferrer">View Live App</a>
-          <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn" target="_blank" rel="noopener noreferrer">View Code</a>
-          <a href="{{ url_for('home') }}#projects" class="btn ghost">Back to Projects</a>
+          <a
+            class="btn primary"
+            href="https://jenniferjgj.com/persistentwaters/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters live app in a new tab"
+          >
+            View Live App
+          </a>
+          <a
+            class="btn secondary"
+            href="https://github.com/jenniferjtk/Persistent-Waters"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters GitHub repository in a new tab"
+          >
+            View Code
+          </a>
+          <a class="btn ghost" href="{{ url_for('home') }}#featured-work">Back to Featured Work</a>
         </div>
       </div>
 
-      <aside class="featured-project project-summary" aria-label="Persistent Waters project summary">
-        <p class="eyebrow">What to mention in an interview</p>
-        <h2>Backend-authoritative gameplay</h2>
+      <aside class="detail-card project-summary-card" aria-label="Persistent Waters summary">
+        <p class="eyebrow">Interview Talking Point</p>
+        <h2>Why this project is worth showing</h2>
         <p>
-          The browser presents the board and player actions, but the backend owns the match state,
-          validates turns, resolves shots, and returns the updated game view.
+          It demonstrates phased delivery, backend state management, user-facing gameplay, and a clear explanation of how server-side rules protect system consistency.
         </p>
         <div class="tag-row">
           <span class="tag">Python</span>
           <span class="tag">Flask</span>
           <span class="tag">Application Logic</span>
-          <span class="tag">Deployment</span>
+          <span class="tag">Deployed Demo</span>
         </div>
       </aside>
     </div>
   </section>
 
-  <section class="section-band" aria-labelledby="phase-heading">
+  <section class="section-band" aria-labelledby="persistent-phases-title">
     <div class="section-copy">
       <p class="eyebrow">Phase Links</p>
-      <h2 id="phase-heading">Persistent Waters build path</h2>
+      <h2 id="persistent-phases-title">One project, three clear checkpoints</h2>
       <p>
-        Each phase has one clear destination so the demo can move quickly from architecture story
-        to deployed behavior without hunting through the page.
+        Reviewers can move from architecture to implementation to live behavior without hunting around for the right version.
       </p>
     </div>
 
@@ -52,67 +67,82 @@
       <article class="phase-card">
         <div class="phase-card-head">
           <p class="eyebrow">Phase 1</p>
-          <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn small" target="_blank" rel="noopener noreferrer">View Code</a>
+          <a
+            class="btn small secondary"
+            href="https://github.com/jenniferjtk/Persistent-Waters"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters GitHub repository for Phase 1 in a new tab"
+          >
+            View Code
+          </a>
         </div>
-        <h3>Backend API and Game Foundation</h3>
-        <p>
-          Established the initial game service with Flask routes, persistent match data, and
-          server-side rules for creating games and resolving turns.
-        </p>
+        <h3>Backend API and game foundation</h3>
+        <p>Initial Flask routes, persistent match data, and backend rules for creating games and resolving turns.</p>
       </article>
 
       <article class="phase-card featured-phase">
         <div class="phase-card-head">
           <p class="eyebrow">Phase 2</p>
-          <a href="https://jenniferjgj.com/persistentwaters/" class="btn small primary" target="_blank" rel="noopener noreferrer">Open Phase 2</a>
+          <a
+            class="btn small primary"
+            href="https://jenniferjgj.com/persistentwaters/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters live phase 2 build in a new tab"
+          >
+            Open Live Build
+          </a>
         </div>
-        <h3>Playable Frontend and Live Match Flow</h3>
-        <p>
-          Added the browser gameplay view with board state, firing controls, polling updates,
-          and move history for a complete playable loop.
-        </p>
+        <h3>Playable frontend and live match flow</h3>
+        <p>Browser gameplay, board updates, firing controls, and a full player loop backed by the server.</p>
       </article>
 
       <article class="phase-card">
         <div class="phase-card-head">
           <p class="eyebrow">Phase 3</p>
-          <a href="https://github.com/jenniferjtk/Persistent-Waters" class="btn small" target="_blank" rel="noopener noreferrer">View Code</a>
+          <a
+            class="btn small secondary"
+            href="https://github.com/jenniferjtk/Persistent-Waters"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the Persistent Waters GitHub repository for Phase 3 in a new tab"
+          >
+            View Code
+          </a>
         </div>
-        <h3>Checkpoint 3 Presentation Package</h3>
-        <p>
-          Consolidated the shipped system narrative, contribution details, and deployment links
-          into a portfolio-ready explanation for review and demo recording.
-        </p>
+        <h3>Presentation-ready packaging</h3>
+        <p>Refined project explanation, contribution framing, and demo-friendly structure for final review.</p>
       </article>
     </div>
   </section>
 
-  <section class="section-band split-section" aria-labelledby="contributions-heading">
+  <section class="section-band contributions-section" aria-labelledby="persistent-contributions-title">
     <div class="section-copy">
       <p class="eyebrow">My Contributions</p>
-      <h2 id="contributions-heading">Specific work I can explain</h2>
+      <h2 id="persistent-contributions-title">Specific engineering work I can walk through</h2>
     </div>
 
-    <div class="contribution-panel">
+    <article class="contribution-card">
       <ul class="contribution-list">
-        <li>Designed backend route responsibilities so game creation, firing actions, and match retrieval stayed organized around server-owned state.</li>
-        <li>Implemented gameplay logic for validating turns, resolving shots, and returning consistent match results to the interface.</li>
-        <li>Connected the playable board flow to backend endpoints so player actions were processed through the same validation path used by the API.</li>
-        <li>Supported iterative deployment across phase builds, keeping the project demoable while the frontend and match flow evolved.</li>
-        <li>Polished the portfolio explanation around architecture, deployment, and user-facing behavior so the project reads as a shipped system.</li>
+        <li>Organized backend route responsibilities so match creation, move submission, and game retrieval stayed aligned with server-owned state.</li>
+        <li>Implemented or supported gameplay logic that validated turns, resolved shots, and returned consistent match updates to the interface.</li>
+        <li>Connected the board interaction flow to backend endpoints so the frontend did not bypass core rules or duplicate game-state logic.</li>
+        <li>Helped preserve a demoable project path across multiple checkpoints while the system evolved from API-first foundations to a playable application.</li>
       </ul>
-    </div>
+    </article>
   </section>
 
-  <section class="section-band architecture-card" aria-labelledby="architecture-heading">
-    <p class="eyebrow">Architecture Decision</p>
-    <h2 id="architecture-heading">Keep game rules authoritative on the backend</h2>
-    <p>
-      The most important design decision was to treat the Flask backend as the source of truth for
-      match state, turn order, and firing outcomes. That kept the frontend focused on presentation
-      and input while reducing the risk of inconsistent client-side game logic as the project moved
-      through multiple phases.
-    </p>
+  <section class="section-band" aria-labelledby="persistent-architecture-title">
+    <div class="section-copy narrow">
+      <p class="eyebrow">Architecture Decision</p>
+      <h2 id="persistent-architecture-title">Keep game rules authoritative on the backend</h2>
+      <p>
+        Treating the backend as the source of truth for match state, turn order, and firing outcomes made the system easier to test,
+        easier to explain, and less likely to drift as frontend features expanded. That separation also made the live demo more credible,
+        because the interface reflects server-validated results rather than client-only assumptions.
+      </p>
+    </div>
   </section>
 </div>
 {% endblock %}
