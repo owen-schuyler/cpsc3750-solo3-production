@@ -6,7 +6,7 @@ import psycopg
 from psycopg.rows import dict_row
 from flask import (
     Flask, render_template, request, redirect, url_for,
-    flash, make_response, jsonify
+    flash, make_response, jsonify, send_from_directory
 )
 
 app = Flask(__name__)
@@ -230,6 +230,11 @@ def home():
 @app.get("/persistent-waters")
 def persistent_waters():
     return render_template("persistent_waters.html", title="Persistent Waters | Owen Schuyler")
+
+
+@app.route("/persistentwaters")
+def persistent_waters_frontend():
+    return send_from_directory("static/persistentwaters", "index.html")
 
 
 @app.get("/books")
